@@ -1,0 +1,104 @@
+---
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/400-italic.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/roboto/400.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@fortawesome/fontawesome-free/css/v4-shims.min.css';
+import '../styles/global.css';
+import site from '../data/site.json';
+import { url, isExternal } from '../lib.js';
+
+const { title, description = site.description, home = false } = Astro.props;
+const pageTitle = title ? `${title} – ${site.name}` : `${site.name} – ${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const attrs = (item) => (isExternal(item.href) ? { target: '_blank', rel: 'noopener' } : {});
+const isCurrent = (item) => item.href === '/' && home;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(url(site.hero[0].image), Astro.site)} />
+    <link rel="icon" sizes="32x32" href={url('/images/favicon-32.png')} />
+    <link rel="icon" sizes="192x192" href={url('/images/favicon-192.png')} />
+    <link rel="apple-touch-icon" href={url('/images/apple-touch-icon.png')} />
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="site-logo" href={url('/')}><img src={url(site.logo)} alt="Devoxx Greece" width="175" height="54" /></a>
+        <nav class="site-nav" aria-label="Main menu">
+          <ul>
+            {site.menu.map((item) => (
+              <li class:list={{ 'has-children': item.children, current: isCurrent(item) }}>
+                {item.children
+                  ? <a href="#" aria-haspopup="true" onclick="return false">{item.label}</a>
+                  : <a href={url(item.href)} {...attrs(item)}>{item.label}</a>}
+                {item.children && (
+                  <ul class="sub-menu">
+                    {item.children.map((c) => <li><a href={url(c.href)} {...attrs(c)}>{c.label}</a></li>)}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="side-menu-backdrop" hidden></div>
+    <aside class="side-menu" id="side-menu" aria-label="Menu" hidden>
+      <button class="side-menu-close" type="button" aria-label="Close menu">&times;</button>
+      <ul>
+        {site.menu.map((item) => (
+          <li>
+            {item.children ? <span>{item.label}</span> : <a href={url(item.href)} {...attrs(item)}>{item.label}</a>}
+            {item.children && (
+              <ul>{item.children.map((c) => <li><a href={url(c.href)} {...attrs(c)}>{c.label}</a></li>)}</ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </aside>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">{site.copyright}</div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var toggle = document.querySelector('.menu-toggle');
+        var menu = document.getElementById('side-menu');
+        var backdrop = document.querySelector('.side-menu-backdrop');
+        function set(open) {
+          menu.hidden = !open;
+          backdrop.hidden = !open;
+          toggle.setAttribute('aria-expanded', String(open));
+          document.body.classList.toggle('menu-open', open);
+        }
+        toggle.addEventListener('click', function () { set(menu.hidden); });
+        backdrop.addEventListener('click', function () { set(false); });
+        menu.querySelector('.side-menu-close').addEventListener('click', function () { set(false); });
+        menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+      })();
+    </script>
+  </body>
+</html>

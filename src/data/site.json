@@ -1,0 +1,45 @@
+{
+  "name": "Devoxx Greece 2027",
+  "tagline": "A Developer Community Event",
+  "description": "Devoxx Greece 2027 takes place 15-17 April 2027 at the Megaron Athens International Conference Centre. A 3-day developer conference, organised by developers for developers.",
+  "logo": "/images/logo.png",
+  "copyright": "Devoxx Greece is organised by SoftConf ~ Registered office Egnatias Str. 154, 54636 Thessaloniki in Greece",
+  "event": {
+    "startDate": "2027-04-15",
+    "endDate": "2027-04-17",
+    "venue": "Megaron Athens International Conference Centre",
+    "city": "Athens",
+    "country": "GR",
+    "tickets": "https://www.eventora.com/en/Events/devoxx-greece-27",
+    "cfp": "https://dvgr27.cfp.dev/"
+  },
+  "hero": [
+    { "image": "/images/hero-1.jpg", "stats": [["3", "Days"], ["60+", "Speakers"], ["70+", "Sessions"], ["1200+", "Attendees"]] },
+    { "image": "/images/hero-2.jpg", "words": ["Keynotes", "Conference Talks", "Deep Dives", "Hands-on Labs", "Tools-in-Action", "Birds of a Feather", "Quickies"] },
+    { "image": "/images/hero-3.jpg", "headline": "15-17 April 2027", "subline": "Athens | Greece" }
+  ],
+  "menu": [
+    { "label": "Home", "href": "/" },
+    { "label": "Tickets", "href": "/#tickets" },
+    { "label": "Call For Speakers", "href": "https://dvgr27.cfp.dev/" },
+    { "label": "Sponsors", "href": "/#sponsors" },
+    { "label": "Useful info", "children": [
+      { "label": "Press Kit", "href": "/press-kit/" },
+      { "label": "Code of Conduct", "href": "/code-of-conduct/" },
+      { "label": "Terms of Participation", "href": "/terms-of-participation/" },
+      { "label": "Privacy Policy", "href": "/privacy-policy/" },
+      { "label": "FAQ", "href": "/faq/" }
+    ] },
+    { "label": "Connect", "children": [
+      { "label": "Contact", "href": "/#contact" },
+      { "label": "Newsletter", "href": "https://eepurl.com/hXlPAL" },
+      { "label": "Facebook", "href": "https://www.facebook.com/DevoxxGR/" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/company/devoxx-greece/" },
+      { "label": "Twitter", "href": "https://www.twitter.com/devoxxgr" }
+    ] },
+    { "label": "Previous", "children": [
+      { "label": "Videos", "href": "https://www.youtube.com/watch?v=GC0uWs2C8mI&list=PLRsbF2sD7JVpbq0m2mUKFmR-JUgaGwuF-" },
+      { "label": "Photos", "href": "https://www.flickr.com/photos/bejug/albums" }
+    ] }
+  ]
+}
