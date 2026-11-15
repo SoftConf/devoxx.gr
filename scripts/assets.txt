@@ -36,3 +36,8 @@
 /images/tracks/server-settings.png	/wp-content/uploads/2026/10/icon-server-settings.png
 /images/tracks/skull-1.png	/wp-content/uploads/2026/10/icon-skull-1.png
 /images/tracks/surveillance-camera.png	/wp-content/uploads/2026/10/icon-surveillance-camera.png
+/images/atmosphere/arrivals.jpg	https://live.staticflickr.com/65535/55240613323_6c89ddf3f5_b.jpg
+/images/atmosphere/hallway.jpg	https://live.staticflickr.com/65535/55240874525_07236a8d69_b.jpg
+/images/atmosphere/speakers-on-stage.jpg	https://live.staticflickr.com/65535/55240616878_c664658dd6_b.jpg
+/images/atmosphere/fireside-talk.jpg	https://live.staticflickr.com/65535/55240616883_eee658f57b_b.jpg
+/images/atmosphere/attendee.jpg	https://live.staticflickr.com/65535/55240617068_1fcc520bbf_b.jpg
