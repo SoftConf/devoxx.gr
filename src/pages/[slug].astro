@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import pages from '../data/pages.json';
+import { withBase } from '../lib.js';
+
+// One page per HTML file in src/content/pages/. Titles live in src/data/pages.json.
+const files = import.meta.glob('../content/pages/*.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  const files = import.meta.glob('../content/pages/*.html', { query: '?raw', import: 'default', eager: true });
+  return Object.keys(files).map((k) => ({ params: { slug: k.split('/').pop().replace('.html', '') } }));
+}
+
+const { slug } = Astro.params;
+const html = withBase(files[`../content/pages/${slug}.html`]);
+const title = pages[slug]?.title ?? slug;
+---
+<Base title={title}>
+  <div class="page-content">
+    <Fragment set:html={html} />
+  </div>
+</Base>

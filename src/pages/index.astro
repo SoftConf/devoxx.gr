@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { url, withBase } from '../lib.js';
+
+// Each homepage section is a plain HTML file in src/content/home/,
+// rendered in file-name order. Edit those files to change the content.
+const files = import.meta.glob('../content/home/*.html', { query: '?raw', import: 'default', eager: true });
+const sections = Object.keys(files).sort().map((k) => withBase(files[k]));
+
+const e = site.event;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: site.name,
+  description: site.description,
+  startDate: e.startDate,
+  endDate: e.endDate,
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  location: { '@type': 'Place', name: e.venue, address: { '@type': 'PostalAddress', addressLocality: e.city, addressCountry: e.country } },
+  organizer: { '@type': 'Organization', name: 'SoftConf', url: Astro.site },
+  offers: { '@type': 'Offer', url: e.tickets, priceCurrency: 'EUR' },
+  image: new URL(url(site.hero[0].image), Astro.site),
+  url: Astro.site,
+};
+---
+<Base home>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="hero" aria-label="Devoxx Greece 2027">
+    {site.hero.map((s, i) => (
+      <div class="hero-slide" style={`background-image:url(${url(s.image)});animation-delay:${i * 6}s`}>
+        <div class="hero-band">
+          {s.stats && s.stats.map(([n, label]) => <span class="hero-stat"><b>{n}</b> {label}</span>)}
+          {s.words && <span class="hero-words">{s.words.map((w) => <span>{w}</span>)}</span>}
+          {s.headline && <span class="hero-headline"><b>{s.headline}</b> {s.subline}</span>}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  {sections.map((html) => <Fragment set:html={html} />)}
+</Base>
