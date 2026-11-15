@@ -15,7 +15,7 @@ for (const line of list) {
   const target = join(root, 'public', path);
   try { await access(target); skipped++; continue; } catch {}
   try {
-    const res = await fetch(origin + encodeURI(source));
+    const res = await fetch(/^https?:/.test(source) ? source : origin + encodeURI(source));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, Buffer.from(await res.arrayBuffer()));
