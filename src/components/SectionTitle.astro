@@ -1,0 +1,9 @@
+---
+// Section heading in the site's house style: italic caption, uppercase title, gold rule.
+const { caption, title, light = false, rule = true, level = 'h2' } = Astro.props;
+const Tag = level;
+---
+<div class:list={['section-title', { 'is-light': light, 'no-rule': !rule }]}>
+  {caption && <p class="caption">{caption}</p>}
+  <Tag>{title}</Tag>
+</div>

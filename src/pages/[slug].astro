@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 import pages from '../data/pages.json';
 import { withBase } from '../lib.js';
 
@@ -13,10 +14,13 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const html = withBase(files[`../content/pages/${slug}.html`]);
-const title = pages[slug]?.title ?? slug;
+const page = pages[slug] ?? { title: slug };
 ---
-<Base title={title}>
-  <div class="page-content">
-    <Fragment set:html={html} />
-  </div>
+<Base title={page.title} current={slug === 'faq' ? 'FAQ' : ''}>
+  <section class="section">
+    <div class="container">
+      <SectionTitle caption={page.caption} title={page.title} level="h1" />
+      <div class="prose" set:html={html} />
+    </div>
+  </section>
 </Base>

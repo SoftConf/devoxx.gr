@@ -1,26 +1,26 @@
 {
-  "code-of-conduct": {
-    "title": "Code of Conduct"
-  },
   "faq": {
-    "title": "FAQ"
+    "title": "Frequently Asked Questions",
+    "caption": "Useful info"
+  },
+  "code-of-conduct": {
+    "title": "Code of Conduct",
+    "caption": "Useful info"
   },
   "terms-of-participation": {
-    "title": "Terms of Participation"
+    "title": "Terms of Participation",
+    "caption": "Useful info"
   },
   "privacy-policy": {
-    "title": "Privacy Policy"
+    "title": "Privacy Policy",
+    "caption": "Useful info"
   },
   "cookie-consent": {
-    "title": "Cookie Consent"
-  },
-  "sponsorships": {
-    "title": "Sponsorships"
-  },
-  "press-kit": {
-    "title": "Press Kit"
+    "title": "Cookie Consent",
+    "caption": "Useful info"
   },
   "logos": {
-    "title": "Logos"
+    "title": "Devoxx Logos",
+    "caption": "Press"
   }
 }

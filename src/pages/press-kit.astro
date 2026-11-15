@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import { url } from '../lib.js';
+
+// Set these to the real links; a button with no link is not shown.
+const driveUrl = '';
+const zipUrl = '';
+---
+<Base title="Press Kit" description="Logos, banners and an informational brochure for Devoxx Greece 2027.">
+  <section class="section">
+    <div class="container split">
+      <img class="split-photo" src={url('/images/press-kit.jpg')} alt="" />
+      <div>
+        <SectionTitle caption="Useful info" title="Press kit" level="h1" />
+        <p>Here you can download all the information about what makes Devoxx Greece the most anticipated tech event of 2027.</p>
+        <p>Find media-related materials, including our logos, banners, and an informational brochure!</p>
+        <div class="btn-row">
+          {driveUrl && <a class="btn btn-gold" href={driveUrl} target="_blank" rel="noopener">Browse Press Kit in Google Drive</a>}
+          {zipUrl && <a class="btn btn-line" href={zipUrl}>Download Press Kit as Zip</a>}
+          <a class="btn btn-dark" href={url('/logos/')}>Devoxx logos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

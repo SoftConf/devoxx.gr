@@ -1,12 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import SectionTitle from '../components/SectionTitle.astro';
 import site from '../data/site.json';
-import { url, withBase } from '../lib.js';
-
-// Each homepage section is a plain HTML file in src/content/home/,
-// rendered in file-name order. Edit those files to change the content.
-const files = import.meta.glob('../content/home/*.html', { query: '?raw', import: 'default', eager: true });
-const sections = Object.keys(files).sort().map((k) => withBase(files[k]));
+import home from '../data/home.json';
+import committee from '../data/committee.json';
+import { url } from '../lib.js';
 
 const e = site.event;
 const jsonLd = {
@@ -18,27 +16,279 @@ const jsonLd = {
   endDate: e.endDate,
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   eventStatus: 'https://schema.org/EventScheduled',
-  location: { '@type': 'Place', name: e.venue, address: { '@type': 'PostalAddress', addressLocality: e.city, addressCountry: e.country } },
+  location: { '@type': 'Place', name: e.venue, address: { '@type': 'PostalAddress', streetAddress: e.address, addressLocality: e.city, addressCountry: e.country } },
   organizer: { '@type': 'Organization', name: 'SoftConf', url: Astro.site },
   offers: { '@type': 'Offer', url: e.tickets, priceCurrency: 'EUR' },
-  image: new URL(url(site.hero[0].image), Astro.site),
+  image: new URL(url(site.hero.image), Astro.site),
   url: Astro.site,
 };
+const pad = (n) => String(n + 1).padStart(2, '0');
 ---
-<Base home>
+<Base current="Home">
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-  <section class="hero" aria-label="Devoxx Greece 2027">
-    {site.hero.map((s, i) => (
-      <div class="hero-slide" style={`background-image:url(${url(s.image)});animation-delay:${i * 6}s`}>
-        <div class="hero-band">
-          {s.stats && s.stats.map(([n, label]) => <span class="hero-stat"><b>{n}</b> {label}</span>)}
-          {s.words && <span class="hero-words">{s.words.map((w) => <span>{w}</span>)}</span>}
-          {s.headline && <span class="hero-headline"><b>{s.headline}</b> {s.subline}</span>}
+  <!-- Hero -->
+  <section class="hero">
+    <img class="bg" src={url(site.hero.image)} alt="" />
+    <div class="hero-inner">
+      <div class="container">
+        <p class="caption">{site.hero.eyebrow}</p>
+        <h1>{site.name}</h1>
+        <ul class="hero-meta">
+          <li>{e.dates}</li>
+          <li>{e.venueShort}</li>
+          <li>3 days</li>
+        </ul>
+        <p class="hero-pitch">{site.hero.pitch}</p>
+        <div class="btn-row">
+          <a class="btn btn-gold" href={e.tickets} target="_blank" rel="noopener">Get tickets</a>
+          <a class="btn btn-line-light" href={e.cfp} target="_blank" rel="noopener">Submit a talk</a>
+        </div>
+        <div class="countdown" data-countdown={e.countdownTo}>
+          <div class="countdown-text">
+            <strong>{site.name} starts in</strong>
+            <span class="caption">{site.hero.countdownNote}</span>
+          </div>
+          <div class="countdown-units" role="timer" aria-live="off">
+            <div><b data-unit="days">–</b><span>Days</span></div>
+            <div><b data-unit="hours">–</b><span>Hours</span></div>
+            <div><b data-unit="minutes">–</b><span>Min</span></div>
+            <div><b data-unit="seconds">–</b><span>Sec</span></div>
+          </div>
         </div>
       </div>
-    ))}
+    </div>
   </section>
 
-  {sections.map((html) => <Fragment set:html={html} />)}
+  <!-- Stats + about -->
+  <section class="section section-grey about">
+    <div class="container">
+      <ul class="stats">
+        {site.stats.map(([n, label]) => <li><b>{n}</b><span>{label}</span></li>)}
+      </ul>
+      <SectionTitle caption={home.about.caption} title={home.about.title} />
+      <div class="two-col">
+        <div>
+          <p>{home.about.paragraphs[0]}</p>
+          <p>{home.about.paragraphs[1]}</p>
+          <p>
+            {home.about.family}{' '}
+            {site.footer.find((c) => c.title === 'Devoxx family').links.map((l, i, a) => (
+              <><a href={l.href} target="_blank" rel="noopener">{l.label}</a>{i < a.length - 1 ? ', ' : ''}</>
+            ))}
+          </p>
+        </div>
+        <div>
+          <p>{home.about.paragraphs[2]}</p>
+          <p>{home.about.paragraphs[3]}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's on -->
+  <section class="section" id="whatson">
+    <div class="container">
+      <SectionTitle caption="Three days, six formats" title="What's on" />
+      <ul class="card-grid">
+        {home.sessions.map((s) => (
+          <li class="card card-grey">
+            <span class="tag">{s.days}</span>
+            <h3>{s.name}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Tracks -->
+  <section class="section section-grey" id="tracks">
+    <div class="container">
+      <SectionTitle caption={site.name} title="Tracks" />
+      <ul class="card-grid">
+        {home.tracks.map((t, i) => (
+          <li class="card track">
+            <div class="track-head">
+              <img src={url(t.icon)} alt="" width="72" height="72" loading="lazy" />
+              <span class="track-no">{pad(i)}</span>
+            </div>
+            <h3>{t.name}</h3>
+            <p>{t.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Atmosphere -->
+  <section class="section section-dark" id="speakers">
+    <div class="container">
+      <SectionTitle caption="Photos and video from previous editions" title="The Devoxx Greece atmosphere" light />
+      <div class="mosaic">
+        <div class="mosaic-video">
+          <iframe src={site.previous.videoEmbed} title="Devoxx Greece video" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        {home.photos.map((p) => <img src={url(p)} alt="" loading="lazy" />)}
+      </div>
+      <p class="link-row">
+        <a href={site.previous.photos} target="_blank" rel="noopener">More photos on Flickr</a>
+        <a href={site.previous.videos} target="_blank" rel="noopener">Watch previous talks on YouTube</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Important dates -->
+  <section class="section" id="dates">
+    <div class="container">
+      <SectionTitle caption="Save the dates" title="Important dates" />
+      <ol class="timeline">
+        {home.dates.map((d) => (
+          <li class:list={{ done: d.done }}>
+            <strong>{d.when}</strong>
+            <span>{d.what}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Why come -->
+  <section class="section section-grey">
+    <div class="container split">
+      <img class="split-photo" src={url(home.benefits.photo)} alt="" loading="lazy" />
+      <div>
+        <SectionTitle caption="Why come" title="What you take home" />
+        <ul class="benefits">
+          {home.benefits.items.map((b) => <li><h3>{b.title}</h3><p>{b.text}</p></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tickets -->
+  <section class="section section-photo" id="tickets">
+    <img class="bg" src={url(home.tickets.background)} alt="" loading="lazy" />
+    <div class="container">
+      <SectionTitle caption="The pass you can buy today is the highlighted one" title="Tickets" light />
+      <ul class="tiers">
+        {home.tickets.tiers.map((t) => (
+          <li class:list={['tier', `is-${t.state}`]}>
+            <div class="tier-head">
+              <span class="tier-status">{t.status}</span>
+              <h3>{t.name}</h3>
+              <p>{t.caption}</p>
+            </div>
+            <div class="tier-body">
+              <p class="tier-price"><span>EUR</span> <b>{t.price}</b> <span>+ VAT</span></p>
+              <ul class="checks">
+                {[...home.tickets.common, ...t.extra].map((f) => <li>{f}</li>)}
+              </ul>
+              {t.state === 'on-sale'
+                ? <a class="btn btn-gold btn-block" href={e.tickets} target="_blank" rel="noopener">{t.cta}</a>
+                : <span class="btn btn-disabled btn-block" aria-disabled="true">{t.cta}</span>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sponsors -->
+  <section class="section" id="sponsors">
+    <div class="container">
+      <SectionTitle caption="Each year we welcome amazing companies" title="Sponsors" />
+      <div class="row-between">
+        <p>{home.sponsors.intro} Check out our <a href={url('/sponsorships/')}>sponsorship info page</a>.</p>
+        <a class="btn btn-dark" href={url('/sponsorships/')}>Become a sponsor</a>
+      </div>
+      {home.sponsors.tiers.map((tier) => (
+        <div class="sponsor-tier">
+          <h3>{tier.name}</h3>
+          <ul class="sponsor-logos">
+            {tier.sponsors.map((s) => <li><a href={s.href} target="_blank" rel="noopener"><img src={url(s.logo)} alt={s.name} loading="lazy" /></a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Program committee -->
+  <section class="section section-grey" id="committee">
+    <div class="container">
+      <SectionTitle caption={`${committee.length} people from the community who shape the program`} title="Program committee" />
+      <ul class="people">
+        {committee.map((m) => (
+          <li>
+            <a href={url('/team/')}>
+              <img src={url(m.photo)} alt="" width="118" height="118" loading="lazy" />
+              <strong>{m.name}</strong>
+              <span class="caption">{m.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="center"><a class="btn btn-line" href={url('/team/')}>Read their bios</a></p>
+    </div>
+  </section>
+
+  <!-- Venue -->
+  <section class="section" id="venue">
+    <div class="container">
+      <SectionTitle caption="Practical" title="Venue" />
+      <div class="venue">
+        <div>
+          <h3>{e.venue}</h3>
+          <p class="muted">{e.address}</p>
+          <p>{home.venue.travel} <a href={home.venue.metro} target="_blank" rel="noopener">Metro map</a>.</p>
+          <p><strong>Note:</strong> {home.venue.note}</p>
+          <p><a class="btn btn-dark" href={e.map} target="_blank" rel="noopener">Open in Maps</a></p>
+        </div>
+        <iframe class="venue-map" src={home.venue.mapEmbed} title="Map of the venue" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="section section-photo" id="contact">
+    <img class="bg" src={url(home.closing.photo)} alt="" loading="lazy" />
+    <div class="container">
+      <SectionTitle caption="Join us" title="Two ways to be part of it" light />
+      <ul class="closing-cards">
+        {home.closing.cards.map((c) => (
+          <li>
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+            <a class:list={['btn', `btn-${c.style}`]} href={c.href} target="_blank" rel="noopener">{c.cta}</a>
+          </li>
+        ))}
+      </ul>
+      <p class="contact-line">
+        General inquiries: <a href={`mailto:${site.contact.general}`}>{site.contact.general}</a>
+        <span aria-hidden="true"> · </span>
+        Sponsoring: <a href={`mailto:${site.contact.sponsors}`}>{site.contact.sponsors}</a>
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var el = document.querySelector('[data-countdown]');
+      if (!el) return;
+      var target = new Date(el.getAttribute('data-countdown')).getTime();
+      var units = {};
+      el.querySelectorAll('[data-unit]').forEach(function (n) { units[n.getAttribute('data-unit')] = n; });
+      function two(n) { return n < 10 ? '0' + n : String(n); }
+      function tick() {
+        var s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+        units.days.textContent = Math.floor(s / 86400);
+        units.hours.textContent = two(Math.floor((s % 86400) / 3600));
+        units.minutes.textContent = two(Math.floor((s % 3600) / 60));
+        units.seconds.textContent = two(s % 60);
+        if (s === 0) { el.querySelector('strong').textContent = 'Devoxx Greece 2027 is on'; clearInterval(timer); }
+      }
+      var timer = setInterval(tick, 1000);
+      tick();
+    })();
+  </script>
 </Base>
