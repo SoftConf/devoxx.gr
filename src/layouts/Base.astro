@@ -2,18 +2,14 @@
 import '@fontsource/poppins/400.css';
 import '@fontsource/poppins/400-italic.css';
 import '@fontsource/poppins/500.css';
-import '@fontsource/roboto/400.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import '@fortawesome/fontawesome-free/css/v4-shims.min.css';
 import '../styles/global.css';
 import site from '../data/site.json';
 import { url, isExternal } from '../lib.js';
 
-const { title, description = site.description, home = false } = Astro.props;
+const { title, description = site.description, current = '' } = Astro.props;
 const pageTitle = title ? `${title} – ${site.name}` : `${site.name} – ${site.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const attrs = (item) => (isExternal(item.href) ? { target: '_blank', rel: 'noopener' } : {});
-const isCurrent = (item) => item.href === '/' && home;
+const ext = (href) => (isExternal(href) ? { target: '_blank', rel: 'noopener' } : {});
 ---
 <!doctype html>
 <html lang="en">
@@ -27,79 +23,75 @@ const isCurrent = (item) => item.href === '/' && home;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(url(site.hero[0].image), Astro.site)} />
+    <meta property="og:image" content={new URL(url(site.hero.image), Astro.site)} />
     <link rel="icon" sizes="32x32" href={url('/images/favicon-32.png')} />
     <link rel="icon" sizes="192x192" href={url('/images/favicon-192.png')} />
     <link rel="apple-touch-icon" href={url('/images/apple-touch-icon.png')} />
     <slot name="head" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {site.announcement && (
+      <div class="announcement">
+        <span>{site.announcement.text}</span>
+        <a href={url(site.announcement.href)} {...ext(site.announcement.href)}>{site.announcement.linkLabel}</a>
+      </div>
+    )}
+
     <header class="site-header">
       <div class="site-header-inner">
         <a class="site-logo" href={url('/')}><img src={url(site.logo)} alt="Devoxx Greece" width="175" height="54" /></a>
-        <nav class="site-nav" aria-label="Main menu">
-          <ul>
-            {site.menu.map((item) => (
-              <li class:list={{ 'has-children': item.children, current: isCurrent(item) }}>
-                {item.children
-                  ? <a href="#" aria-haspopup="true" onclick="return false">{item.label}</a>
-                  : <a href={url(item.href)} {...attrs(item)}>{item.label}</a>}
-                {item.children && (
-                  <ul class="sub-menu">
-                    {item.children.map((c) => <li><a href={url(c.href)} {...attrs(c)}>{c.label}</a></li>)}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+        <nav class="site-nav" id="site-nav" aria-label="Main menu">
+          {site.menu.map((item) => (
+            <a href={url(item.href)} class:list={{ current: item.label === current }} {...ext(item.href)}>{item.label}</a>
+          ))}
         </nav>
-        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="side-menu">
+        <a class="btn btn-gold header-cta" href={site.event.tickets} target="_blank" rel="noopener">Tickets</a>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
           <span></span><span></span><span></span>
         </button>
       </div>
     </header>
 
-    <div class="side-menu-backdrop" hidden></div>
-    <aside class="side-menu" id="side-menu" aria-label="Menu" hidden>
-      <button class="side-menu-close" type="button" aria-label="Close menu">&times;</button>
-      <ul>
-        {site.menu.map((item) => (
-          <li>
-            {item.children ? <span>{item.label}</span> : <a href={url(item.href)} {...attrs(item)}>{item.label}</a>}
-            {item.children && (
-              <ul>{item.children.map((c) => <li><a href={url(c.href)} {...attrs(c)}>{c.label}</a></li>)}</ul>
-            )}
-          </li>
-        ))}
-      </ul>
-    </aside>
-
-    <main>
+    <main id="main">
       <slot />
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer-inner">{site.copyright}</div>
+      <div class="container">
+        <div class="footer-cols">
+          <div class="footer-brand">
+            <img src={url(site.logo)} alt="Devoxx Greece" width="175" height="54" />
+            <p>{site.event.dates}<br />{site.event.venue}</p>
+          </div>
+          {site.footer.map((col) => (
+            <div>
+              <h2>{col.title}</h2>
+              <ul>
+                {col.links.map((l) => <li><a href={url(l.href)} {...ext(l.href)}>{l.label}</a></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p class="footer-legal">{site.copyright}</p>
+      </div>
     </footer>
 
     <script is:inline>
       (function () {
         var toggle = document.querySelector('.menu-toggle');
-        var menu = document.getElementById('side-menu');
-        var backdrop = document.querySelector('.side-menu-backdrop');
+        var nav = document.getElementById('site-nav');
         function set(open) {
-          menu.hidden = !open;
-          backdrop.hidden = !open;
+          nav.classList.toggle('is-open', open);
           toggle.setAttribute('aria-expanded', String(open));
-          document.body.classList.toggle('menu-open', open);
         }
-        toggle.addEventListener('click', function () { set(menu.hidden); });
-        backdrop.addEventListener('click', function () { set(false); });
-        menu.querySelector('.side-menu-close').addEventListener('click', function () { set(false); });
-        menu.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+        toggle.addEventListener('click', function () { set(!nav.classList.contains('is-open')); });
+        nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
       })();
     </script>
+
     <!-- Metricool analytics -->
     <script is:inline>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"1563c9c4aec5573a819ef7f6ae2d93f7"})});</script>
   </body>

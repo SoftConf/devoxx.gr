@@ -1,0 +1,238 @@
+{
+  "about": {
+    "caption": "The 5th edition : 15 – 17 of April",
+    "title": "Devoxx Greece 2027",
+    "paragraphs": [
+      "Devoxx Greece 2027 will take place from April 15 to 17 at the Megaron Athens International Conference Centre.",
+      "Devoxx Greece is the evolution of the Voxxed Days Athens conference, and it has become a 3-day conference where developer communities come together to explore the latest technology advancements with some of the most inspiring speakers in our sector.",
+      "Diverse local and global talent introduce the latest and most vital content from the development world, with a range of sessions covering Java, Cloud, Big Data, Security, Architecture, Artificial Intelligence, Machine Learning, Robotics, Programming Languages, Methodologies, and Developer Culture.",
+      "Devoxx Greece expands your knowledge base, sharpens your skills, and provides hands-on experience with the latest technologies."
+    ],
+    "family": "The Devoxx family welcomes annually over 15.000 Devoxxians!"
+  },
+  "sessions": [
+    {
+      "days": "Days 1 & 2",
+      "name": "Keynotes",
+      "text": "Inspiring and thought-provoking keynotes on Thursday morning and Friday evening."
+    },
+    {
+      "days": "Days 1–3",
+      "name": "Conference",
+      "text": "40 minutes sessions on a range of different technologies, practices and methodologies."
+    },
+    {
+      "days": "Days 1–3",
+      "name": "Hands-on Labs",
+      "text": "2 hours hands-on sessions where you delve into a specific technology or methodology under expert guidance."
+    },
+    {
+      "days": "Days 1–3",
+      "name": "Deep Dive",
+      "text": "3 hours sessions where attendees can rapidly immerse themselves in a subject matter with an in-depth examination of a topic or technology."
+    },
+    {
+      "days": "Days 1–3",
+      "name": "Byte Size",
+      "text": "15 minutes sessions designed for speakers to give a quickfire view of a particular subject."
+    },
+    {
+      "days": "Days 2–3",
+      "name": "Mentoring Sessions",
+      "text": "15-20-minute round table sessions focused on soft skills, personal branding, career development, public speaking and many more."
+    }
+  ],
+  "tracks": [
+    {
+      "name": "Agentic Engineering & Tooling",
+      "text": "Multi-agent systems, tool-use, evals, and shipping AI beyond the demo.",
+      "icon": "/images/tracks/skull-1.png"
+    },
+    {
+      "name": "Architecture & Modernization",
+      "text": "Designing for agentic workflows, event-driven systems, and legacy transformation.",
+      "icon": "/images/tracks/blockchain.png"
+    },
+    {
+      "name": "Cloud Native, Data & Infrastructure",
+      "text": "Kubernetes, platform engineering, vector DBs, model serving, and GPU orchestration.",
+      "icon": "/images/tracks/server-settings.png"
+    },
+    {
+      "name": "Development Practices",
+      "text": "All about Getting Stuff Done right. Methodologies, better practices, etc.",
+      "icon": "/images/tracks/hearts-card.png"
+    },
+    {
+      "name": "Front-end & UX",
+      "text": "Web & mobile, performance, accessibility, design systems.",
+      "icon": "/images/tracks/front-end-ux.svg"
+    },
+    {
+      "name": "Java Language & Platform",
+      "text": "Project Loom, Leyden, Valhalla, Panama, and the evolving JVM.",
+      "icon": "/images/tracks/coffee-mug.png"
+    },
+    {
+      "name": "Mind the Geek",
+      "text": "Developer candy: stuff we want to know about but don't (generally) at work, Robotics, biological computing, cybernetics, AI, new toys, tomorrow's technologies.",
+      "icon": "/images/tracks/robot-arm.png"
+    },
+    {
+      "name": "People, Practices & Career",
+      "text": "Leading teams, engineering culture, and career resilience.",
+      "icon": "/images/tracks/deepfake-ai.png"
+    },
+    {
+      "name": "Security, Trust & Compliance",
+      "text": "Guardrails, prompt injection defense, model governance, and supply-chain security.",
+      "icon": "/images/tracks/surveillance-camera.png"
+    }
+  ],
+  "photos": [
+    "/images/atmosphere/fireside-talk.jpg",
+    "/images/atmosphere/arrivals.jpg",
+    "/images/atmosphere/attendee.jpg",
+    "/images/atmosphere/speakers-on-stage.jpg",
+    "/images/atmosphere/hallway.jpg",
+    "/images/hero-3.jpg"
+  ],
+  "dates": [
+    {
+      "when": "From October",
+      "what": "Call for Papers and registration open",
+      "done": true
+    },
+    {
+      "when": "End of November",
+      "what": "Call for Papers closes"
+    },
+    {
+      "when": "Mid December",
+      "what": "First speakers announced, Early Bird tickets open"
+    },
+    {
+      "when": "23 January",
+      "what": "Standard tickets open"
+    },
+    {
+      "when": "15–17 April",
+      "what": "Devoxx Greece 2027"
+    }
+  ],
+  "benefits": {
+    "photo": "/images/press-kit.jpg",
+    "items": [
+      {
+        "title": "Straight from the source",
+        "text": "Hear from the people who build the tools you use every day, and ask them in person."
+      },
+      {
+        "title": "Skills for Monday morning",
+        "text": "Labs and deep dives focus on techniques you can apply the week after."
+      },
+      {
+        "title": "An honest map of what is next",
+        "text": "What is ready for production and what is still hype."
+      },
+      {
+        "title": "Your people",
+        "text": "1200+ developers from Greece and beyond, in one building for three days."
+      }
+    ]
+  },
+  "tickets": {
+    "background": "/images/hero-2.jpg",
+    "common": [
+      "Access to all days of the main event (April 15th to 17th, 2027)",
+      "Coffee, snacks and light lunch on all days",
+      "Devoxx t-shirt + our swag",
+      "Sponsors gift bag",
+      "Named badge"
+    ],
+    "tiers": [
+      {
+        "name": "Super Early",
+        "caption": "3 day conference ticket. Our super early bird at an extremely low price for our faithful believers and supporters.",
+        "price": "180",
+        "state": "on-sale",
+        "status": "On sale now",
+        "extra": [
+          "Only 100 tickets available",
+          "No refund"
+        ],
+        "cta": "Join now!"
+      },
+      {
+        "name": "Early Bird",
+        "caption": "3 day conference ticket. Our early bird at a low price for our early adopters.",
+        "price": "240",
+        "state": "upcoming",
+        "status": "From mid December",
+        "extra": [
+          "Only 100 tickets available",
+          "No refund"
+        ],
+        "cta": "Opens mid December"
+      },
+      {
+        "name": "Standard",
+        "caption": "3 day conference ticket. Our standard ticket price for those who want to wait for the full list of speakers first.",
+        "price": "300",
+        "state": "upcoming",
+        "status": "From 23 January",
+        "extra": [
+          "Student and Group discounts available",
+          "No refund"
+        ],
+        "cta": "Opens 23 January"
+      }
+    ]
+  },
+  "sponsors": {
+    "intro": "There's a limited number of sponsor slots per-package level. Want to know more about sponsoring Devoxx Greece?",
+    "tiers": []
+  },
+  "venue": {
+    "travel": "The easiest way to reach the venue is to take the M3 (blue) Metro line and stop at the “Megaron Mousikis” station.",
+    "metro": "https://www.ametro.gr/?page_id=4182&lang=en",
+    "note": "Please use the Conference Center entrance, not the theater entrance.",
+    "mapEmbed": "https://www.google.com/maps?q=Megaron+Athens+International+Conference+Centre&output=embed"
+  },
+  "closing": {
+    "photo": "/images/hero-3.jpg",
+    "cards": [
+      {
+        "title": "Get ticket news first",
+        "text": "One email when each ticket batch opens and when the schedule is live.",
+        "cta": "Subscribe to updates",
+        "href": "https://eepurl.com/hXlPAL",
+        "style": "gold"
+      },
+      {
+        "title": "Speak at Devoxx Greece",
+        "text": "The Call for Papers is open until the end of November.",
+        "cta": "Submit a talk",
+        "href": "https://dvgr27.cfp.dev/",
+        "style": "dark"
+      }
+    ]
+  },
+  "team": [
+    {
+      "title": "Our Mission",
+      "photo": "/images/our-mission.jpg",
+      "text": "Provide a first class tech conference where passionate developers can network, hack, get inspired and learn throughout."
+    },
+    {
+      "title": "DNA",
+      "photo": "/images/dna.jpg",
+      "text": "Devoxx is a conference by developers, for developers. It is offered at an affordable price so that every developer can enjoy the experience."
+    },
+    {
+      "title": "Team",
+      "photo": "/images/team.jpg",
+      "text": "Devoxx Greece is a community effort. The team is made up of senior developers, local user group leaders, and passionate technology experts."
+    }
+  ]
+}

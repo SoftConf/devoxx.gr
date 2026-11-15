@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import home from '../data/home.json';
+import committee from '../data/committee.json';
+import { url } from '../lib.js';
+---
+<Base title="Team" current="Team" description="The Devoxx Greece program committee and team.">
+  <section class="section section-grey">
+    <div class="container">
+      <SectionTitle caption={`${committee.length} people from the community who shape the program`} title="Program committee" level="h1" />
+      <ul class="bios">
+        {committee.map((m) => (
+          <li class="card bio">
+            <img src={url(m.photo)} alt="" width="110" height="110" loading="lazy" />
+            <div>
+              <h2>{m.name}</h2>
+              <p class="caption">{m.title}</p>
+              <div class="bio-text" set:html={m.bio} />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <ul class="trio">
+        {home.team.map((t) => (
+          <li>
+            <img src={url(t.photo)} alt="" width="130" height="130" loading="lazy" />
+            <h2>{t.title}</h2>
+            <p>{t.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

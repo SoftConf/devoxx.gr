@@ -7,39 +7,198 @@
   "event": {
     "startDate": "2027-04-15",
     "endDate": "2027-04-17",
+    "countdownTo": "2027-04-15T09:00:00+03:00",
+    "dates": "15–17 April 2027",
     "venue": "Megaron Athens International Conference Centre",
+    "venueShort": "Megaron, Athens",
+    "address": "Leoforos Vasilissis Sofias and Kokkali 1, Athina 115 21, Greece",
     "city": "Athens",
     "country": "GR",
+    "map": "https://goo.gl/maps/suSXcPpRATz1eRQr6",
     "tickets": "https://www.eventora.com/en/Events/devoxx-greece-27",
-    "cfp": "https://dvgr27.cfp.dev/"
+    "cfp": "https://dvgr27.cfp.dev/",
+    "newsletter": "https://eepurl.com/hXlPAL"
   },
-  "hero": [
-    { "image": "/images/hero-1.jpg", "stats": [["3", "Days"], ["60+", "Speakers"], ["70+", "Sessions"], ["1200+", "Attendees"]] },
-    { "image": "/images/hero-2.jpg", "words": ["Keynotes", "Conference Talks", "Deep Dives", "Hands-on Labs", "Tools-in-Action", "Birds of a Feather", "Quickies"] },
-    { "image": "/images/hero-3.jpg", "headline": "15-17 April 2027", "subline": "Athens | Greece" }
+  "announcement": {
+    "text": "Super Early tickets are on sale: only 100 available",
+    "linkLabel": "Get tickets",
+    "href": "https://www.eventora.com/en/Events/devoxx-greece-27"
+  },
+  "hero": {
+    "image": "/images/hero-1.jpg",
+    "eyebrow": "The 5th edition · by developers, for developers",
+    "pitch": "Keynotes, talks, deep dives and hands-on labs on Java, AI, cloud, architecture and developer culture.",
+    "countdownNote": "Call for Papers closes at the end of November"
+  },
+  "stats": [
+    [
+      "3",
+      "Days"
+    ],
+    [
+      "60+",
+      "Speakers"
+    ],
+    [
+      "70+",
+      "Sessions"
+    ],
+    [
+      "1200+",
+      "Attendees"
+    ]
   ],
   "menu": [
-    { "label": "Home", "href": "/" },
-    { "label": "Tickets", "href": "/#tickets" },
-    { "label": "Call For Speakers", "href": "https://dvgr27.cfp.dev/" },
-    { "label": "Sponsors", "href": "/#sponsors" },
-    { "label": "Useful info", "children": [
-      { "label": "Press Kit", "href": "/press-kit/" },
-      { "label": "Code of Conduct", "href": "/code-of-conduct/" },
-      { "label": "Terms of Participation", "href": "/terms-of-participation/" },
-      { "label": "Privacy Policy", "href": "/privacy-policy/" },
-      { "label": "FAQ", "href": "/faq/" }
-    ] },
-    { "label": "Connect", "children": [
-      { "label": "Contact", "href": "/#contact" },
-      { "label": "Newsletter", "href": "https://eepurl.com/hXlPAL" },
-      { "label": "Facebook", "href": "https://www.facebook.com/DevoxxGR/" },
-      { "label": "LinkedIn", "href": "https://www.linkedin.com/company/devoxx-greece/" },
-      { "label": "Twitter", "href": "https://www.twitter.com/devoxxgr" }
-    ] },
-    { "label": "Previous", "children": [
-      { "label": "Videos", "href": "https://www.youtube.com/watch?v=GC0uWs2C8mI&list=PLRsbF2sD7JVpbq0m2mUKFmR-JUgaGwuF-" },
-      { "label": "Photos", "href": "https://www.flickr.com/photos/bejug/albums" }
-    ] }
-  ]
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Tickets",
+      "href": "/#tickets"
+    },
+    {
+      "label": "Venue",
+      "href": "/#venue"
+    },
+    {
+      "label": "Sponsors",
+      "href": "/#sponsors"
+    },
+    {
+      "label": "Team",
+      "href": "/team/"
+    },
+    {
+      "label": "CFP",
+      "href": "https://dvgr27.cfp.dev/"
+    },
+    {
+      "label": "FAQ",
+      "href": "/faq/"
+    }
+  ],
+  "footer": [
+    {
+      "title": "Event",
+      "links": [
+        {
+          "label": "Tickets",
+          "href": "/#tickets"
+        },
+        {
+          "label": "Tracks",
+          "href": "/#tracks"
+        },
+        {
+          "label": "Venue",
+          "href": "/#venue"
+        },
+        {
+          "label": "Sponsors",
+          "href": "/#sponsors"
+        },
+        {
+          "label": "Team",
+          "href": "/team/"
+        },
+        {
+          "label": "Call for Papers",
+          "href": "https://dvgr27.cfp.dev/"
+        }
+      ]
+    },
+    {
+      "title": "Info",
+      "links": [
+        {
+          "label": "FAQ",
+          "href": "/faq/"
+        },
+        {
+          "label": "Code of Conduct",
+          "href": "/code-of-conduct/"
+        },
+        {
+          "label": "Terms of Participation",
+          "href": "/terms-of-participation/"
+        },
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy-policy/"
+        },
+        {
+          "label": "Press Kit",
+          "href": "/press-kit/"
+        }
+      ]
+    },
+    {
+      "title": "Follow",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/company/devoxx-greece"
+        },
+        {
+          "label": "YouTube",
+          "href": "https://www.youtube.com/channel/UCCBVCTuk6uJrN3iFV_3vurg"
+        },
+        {
+          "label": "Instagram",
+          "href": "https://www.instagram.com/devoxxgr/"
+        },
+        {
+          "label": "Facebook",
+          "href": "https://www.facebook.com/devoxxgr/"
+        },
+        {
+          "label": "Twitter",
+          "href": "https://www.twitter.com/devoxxgr"
+        },
+        {
+          "label": "TikTok",
+          "href": "https://www.tiktok.com/@devoxx.greece"
+        },
+        {
+          "label": "Newsletter",
+          "href": "https://eepurl.com/hXlPAL"
+        }
+      ]
+    },
+    {
+      "title": "Devoxx family",
+      "links": [
+        {
+          "label": "Belgium",
+          "href": "https://devoxx.be/"
+        },
+        {
+          "label": "France",
+          "href": "http://www.devoxx.fr/"
+        },
+        {
+          "label": "Poland",
+          "href": "https://devoxx.pl/"
+        },
+        {
+          "label": "Morocco",
+          "href": "http://devoxx.ma/"
+        },
+        {
+          "label": "Ukraine",
+          "href": "https://devoxx.org.ua/"
+        }
+      ]
+    }
+  ],
+  "previous": {
+    "videoEmbed": "https://www.youtube-nocookie.com/embed/POzuzkqgdNw",
+    "videos": "https://www.youtube.com/watch?v=GC0uWs2C8mI&list=PLRsbF2sD7JVpbq0m2mUKFmR-JUgaGwuF-",
+    "photos": "https://www.flickr.com/photos/bejug/albums"
+  },
+  "contact": {
+    "general": "info@devoxx.gr",
+    "sponsors": "sponsors@devoxx.gr"
+  }
 }

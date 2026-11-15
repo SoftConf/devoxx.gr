@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import { url } from '../lib.js';
+
+const levels = ['Diamond', 'Platinum', 'Gold', 'Silver', 'Bronze'];
+const photos = [1, 2, 3, 4].map((n) => `/images/sponsorships/gallery-${n}.jpg`);
+---
+<Base title="Sponsorships" current="Sponsors" description="Sponsor Devoxx Greece 2027: packages, booths and how to get involved.">
+  <section class="section">
+    <div class="container">
+      <SectionTitle caption="Each year we welcome amazing companies who want to show their support for the developer community" title="Sponsorships" level="h1" />
+      <div class="two-col">
+        <div>
+          <p>Sponsorships come in five main forms: Diamond, Platinum, Gold, Silver and Bronze, with a maximum number of slots available at each level.</p>
+          <p>We also offer premium bolt-ons for some sponsorship levels, and a range of à la carte options for sponsors at all levels.</p>
+        </div>
+        <div>
+          <p>Sponsors are provided with a shell-scheme booth space, info desks, and stools. Sponsors can choose to brand the shell scheme directly, bring their own pop-up booth, or create a custom-built booth within the space provided.</p>
+          <p>Our sponsors choose their position on the exhibition floor, with space allocated on a first-come, first-served basis. Therefore, the first company to sign at the Gold level gets first choice of a Gold booth position.</p>
+        </div>
+      </div>
+      <ul class="pills">
+        {levels.map((l) => <li>{l}</li>)}
+      </ul>
+      <ul class="gallery">
+        {photos.map((p) => <li><img src={url(p)} alt="" loading="lazy" /></li>)}
+      </ul>
+    </div>
+  </section>
+  <section class="section section-grey">
+    <div class="container">
+      <div class="callout">
+        <h2>Become a sponsor</h2>
+        <p>If your company would like to support Devoxx Greece, or you want to find out more, drop an email to <a href="mailto:pat@devoxx.gr">pat@devoxx.gr</a> to send you back the detailed sponsoring document.</p>
+        <p>When a sponsorship is agreed upon, we’ll prepare a contract for signing.</p>
+        <p>Once confirmed, we’ll announce your presence at the event, provide all the info you need, and set-up calls to guide your team through all of the next steps.</p>
+        <a class="btn btn-gold" href="mailto:pat@devoxx.gr">Email pat@devoxx.gr</a>
+      </div>
+    </div>
+  </section>
+</Base>
