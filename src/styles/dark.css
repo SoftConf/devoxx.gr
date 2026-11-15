@@ -1,0 +1,65 @@
+/* Dark theme: near-black page, charcoal panels, gold accent, and three light
+   highlights (stats cards, the Important dates band, the closing cards).
+   Loaded after global.css. Remove the import in Base.astro to go back to the
+   light theme. */
+
+:root { --page: #0b0b0b; --panel: #171717; --edge: #2e2e2e; --text: #f1eee7; --soft: #b9b5aa; }
+
+body { background: var(--page); color: var(--text); }
+a { color: var(--gold); }
+a:hover { color: #ffd166; }
+.caption, .muted { color: var(--soft); }
+
+.site-header { background: var(--page); border-bottom: 1px solid var(--edge); }
+.section-grey { background: #111111; }
+.section-dark { background: var(--page); }
+.section-title h1, .section-title h2 { color: #fff; }
+
+.btn-dark, .btn-line { background: transparent; border-color: var(--text); color: #fff; }
+.btn-dark:hover, .btn-line:hover { background: #fff; border-color: #fff; color: var(--ink); }
+
+.card, .card-grey { background: var(--panel); border-color: var(--edge); }
+.card h3 { color: #fff; }
+.card p { color: var(--soft); }
+.tag { background: var(--gold); color: var(--ink); }
+.track-no { color: var(--gold); }
+.track-head img { filter: invert(1); }
+
+.timeline li { border-top-color: #6b6860; }
+.timeline li::before { background: var(--page); border-color: var(--text); }
+.timeline li.done::before { background: var(--gold); border-color: var(--gold); }
+.timeline span { color: var(--soft); }
+
+.benefits p, .trio p { color: var(--soft); }
+
+.tier { border: 1px solid var(--edge); }
+.tier-head { background: #1c1c1c; }
+.tier.is-on-sale .tier-head { background: linear-gradient(var(--gold), var(--gold-soft)); }
+
+.people a { color: #fff; }
+.people a:hover strong { color: var(--gold); }
+.bio .bio-text p { color: #dedad2; }
+
+.venue-map { background: var(--panel); filter: invert(0.92) hue-rotate(180deg) saturate(0.7); }
+
+.prose hr { border-top-color: var(--edge); }
+.prose img { padding: 20px; background: #fff; }
+.pills li { border-color: var(--text); }
+.callout { background: var(--panel); }
+.site-footer { background: #050505; border-top: 1px solid var(--edge); }
+
+/* ---------- Light highlights ---------- */
+
+.stats li { color: var(--ink); box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4); }
+.stats span { color: var(--muted); }
+
+.section-light { background: var(--grey); color: var(--ink); }
+.section-light .section-title h1, .section-light .section-title h2 { color: var(--ink); }
+.section-light .caption, .section-light .timeline span { color: var(--muted); }
+.section-light .timeline li { border-top-color: #8d8a83; }
+.section-light .timeline li.done { border-top-color: var(--gold-soft); }
+.section-light .timeline li::before { background: #fff; border-color: var(--ink); }
+.section-light .timeline li.done::before { background: var(--gold); border-color: var(--ink); }
+
+.closing-cards .btn-dark { background: var(--ink); border-color: var(--ink); color: #fff; }
+.closing-cards .btn-dark:hover { background: #24332e; border-color: #24332e; color: #fff; }
