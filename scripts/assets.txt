@@ -15,7 +15,6 @@
 /images/dna.jpg	/wp-content/uploads/2017/05/DNA-copy.jpg
 /images/favicon-192.png	/wp-content/uploads/2022/11/cropped-Devoxx-Twitter400x400-07-192x192.png
 /images/favicon-32.png	/wp-content/uploads/2022/11/cropped-Devoxx-Twitter400x400-07-32x32.png
-/images/hero-1.jpg	/wp-content/uploads/2023/10/52907021685_8159720705_k.jpg
 /images/hero-2.jpg	/wp-content/uploads/2023/10/52906787854_1f8a314705_k.jpg
 /images/hero-3.jpg	/wp-content/uploads/2023/10/52906643866_cb9e8931c1_k.jpg
 /images/important-dates.png	/wp-content/uploads/2025/10/imageedit_1_2722191318.png
