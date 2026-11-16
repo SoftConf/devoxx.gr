@@ -23,10 +23,6 @@
 /images/logo.png	/wp-content/uploads/2022/11/Devoxx-site-logo-175x53-72ppi.png
 /images/our-mission.jpg	/wp-content/uploads/2017/05/Mission-copy-2.jpg
 /images/press-kit.jpg	/wp-content/uploads/2024/11/dDGR_3484.jpg
-/images/sponsorships/gallery-1.jpg	/wp-content/uploads/2023/10/52906071027_c573536117_c.jpg
-/images/sponsorships/gallery-2.jpg	/wp-content/uploads/2023/10/52906645346_60883d48a0_c.jpg
-/images/sponsorships/gallery-3.jpg	/wp-content/uploads/2023/10/52906645566_ae89ac072a_c.jpg
-/images/sponsorships/gallery-4.jpg	/wp-content/uploads/2023/10/52907028555_5686673b99_c.jpg
 /images/team.jpg	/wp-content/uploads/2017/05/team-copy.jpg
 /images/tracks/blockchain.png	/wp-content/uploads/2026/10/icon-blockchain.png
 /images/tracks/coffee-mug.png	/wp-content/uploads/2026/10/icon-coffee-mug.png
